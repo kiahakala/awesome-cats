@@ -51,7 +51,7 @@ function CatItem({ cat }) {
 			<time>{cat.date}</time>
 			<p>{cat.description}</p>
 			<p>{cat.likes}</p>
-			<IconButton>
+			<IconButton onClick={() => console.log('M')}>
 				<PetsIcon />
 			</IconButton>
 			<menu className={classes.actions}>
