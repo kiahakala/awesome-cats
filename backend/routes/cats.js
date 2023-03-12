@@ -99,6 +99,17 @@ router.patch('/:id', async (req, res, next) => {
   }
 });
 
+router.put('/:id', async (req, res, next) => {
+	const data = req.body;
+  
+	try {
+	  await replace(req.params.id, data);
+	  res.json({ message: 'cat updated.', cat: data });
+	} catch (error) {
+	  next(error);
+	}
+  });
+
 router.delete('/:id', async (req, res, next) => {
   try {
     await remove(req.params.id);

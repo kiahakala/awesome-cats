@@ -1,11 +1,1 @@
-{
-	"cats": [
-	  {
-		"id": "c1",
-		"title": "A dummy cat",
-		"date": "2023-02-22",
-		"image": "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-		"description": "This is an amazing cat."
-	  }
-	]
-  }
+{"cats":[{"title":"Iiu","image":"https://images.unsplash.com/photo-1491485880348-85d48a9e5312?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80","date":"2023-03-11","description":"Not happy though","likes":75,"id":"e174be5f-7342-4a90-9d65-8e04c0ba0112"},{"title":"jljljl","image":"https://images.unsplash.com/photo-1491485880348-85d48a9e5312?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80","date":"2023-03-11","description":"hkhkk","id":"4c1413b9-45c7-42f2-9441-ae689acb5abd"},{"title":"Test","image":"https://media.wired.co.uk/photos/60c8730fa81eb7f50b44037e/16:9/w_2560%2Cc_limit/1521-WIRED-Cat.jpeg","date":"2023-03-10","description":"The most famous cat in the interwebs","likes":null,"id":"af9f1f98-a6c4-4f54-8449-e5c75b7922a4"},{"title":"Wiki Cat","image":"https://upload.wikimedia.org/wikipedia/commons/1/15/Cat_August_2010-4.jpg","date":"2023-02-26","description":"The most famous cat in the interwebs","id":"6dee3d94-c0eb-4da2-8e3f-409eab960a61"},{"id":"c1","title":"A dummy cat","date":"2023-02-22","image":"https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80","description":"This is an amazing cat."}]}

@@ -37,7 +37,7 @@ async function get(id) {
 
 async function add(data) {
   const storedData = await readData();
-  storedData.cat.unshift({ ...data, id: generateId() });
+  storedData.cats.unshift({ ...data, id: generateId() });
   await writeData(storedData);
 }
 
