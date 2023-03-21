@@ -2,31 +2,58 @@
 	max-width: 50rem;
 	margin: 2rem auto;
 	text-align: center;
-  }
-  
-  .cat img {
+}
+
+.cat img {
 	width: 30rem;
 	border-radius: 4px;
-  }
-  
-  .actions {
+}
+
+.actions {
 	display: flex;
 	gap: 1rem;
 	justify-content: center;
 	align-items: center;
 	padding: 0;
-  }
-  
-  .actions a,
-  .actions button {
+}
+
+.actions a,
+.actions button {
 	padding: 0.25rem 1rem;
 	text-decoration: none;
 	font: inherit;
 	cursor: pointer;
-  }
-  
-  .actions button {
+}
+
+.actions button {
 	background-color: transparent;
 	border: none;
 	color: var(--color-primary-800);
-  }
+}
+
+.icon {
+	position: absolute;
+	width: 2em;
+	height: 2em;
+	color: var(--color-primary-800);
+	z-index: 0;	
+}
+
+.iconButton:active {
+	transform: scale(1.5);
+}
+
+.likes {
+	color: var(--color-gray-800);
+	align-items: center;
+	font-size: 16px;
+	z-index: 1;
+	transform: translate(0px, 10px);
+}
+
+.MuiSvgIcon-root {
+	height: 2em !important;
+	width: 2em !important;
+	color: #ababab;
+	z-index: 0;
+}

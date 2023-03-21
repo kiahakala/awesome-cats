@@ -3,37 +3,33 @@ import { Link, useSubmit, useMatch } from 'react-router-dom'
 import { Icon, IconButton } from '@mui/material'
 import PetsIcon from '@mui/icons-material/Pets'
 import classes from './CatItem.module.css'
+import { width } from '@mui/system'
 
 function CatItem({ cat }) {
 	const submit = useSubmit()
-	const [likes, setLikes] = useState(null)
+	const [likes, setLikes] = useState(0)
 
 	const match = useMatch('/cats/:catId')
 	let catId = match.params.catId
 
 	useEffect(() => {
 		async function getLikes() {
-			let response = await fetch(`http://localhost:8080/cats/${catId}`)
+			let response = await fetch(`http://localhost:8080/cats/${catId}`, {
+				method: "PUT",
+				headers: {
+				"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ ...cat, likes: cat.likes }),
+			})
 			let data = await response.json()
 			setLikes(data.cat.likes)
 			console.log(data.cat)
 		}
 		getLikes()
-	}, [catId, likes])
-
-	async function updateLikes() {
-		await fetch(`http://localhost:8080/cats/${catId}`, {
-			method: "PUT",
-			headers: {
-			"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ ...cat, likes: cat.likes }),
-		})
-	}
+	}, [catId, cat, likes])
 	
 	function pawHandler() {
 		setLikes(cat.likes = likes + 1)
-		updateLikes()
 	}
 
 	function startDeleteHandler() {
@@ -50,14 +46,13 @@ function CatItem({ cat }) {
 			<h1>{cat.title}</h1>
 			<time>{cat.date}</time>
 			<p>{cat.description}</p>
-			<p>{cat.likes}</p>
-			<IconButton onClick={() => console.log('M')}>
-				<PetsIcon />
+			<IconButton onClick={pawHandler} className={classes.iconButton}>
+				<PetsIcon className={classes.icon} />
+				<span className={classes.likes}>{cat.likes}</span>
 			</IconButton>
 			<menu className={classes.actions}>
 				<Link to="edit">Edit</Link>
 				<button onClick={startDeleteHandler}>Delete</button>
-				<button onClick={pawHandler}>{cat.likes}</button>
 			</menu>
 		</article>
 	)

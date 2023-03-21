@@ -88,21 +88,28 @@ function CatForm({ method, cat }) {
 
 export default CatForm
 
-export async function action({ request, params }) {
+export async function action({ request, params, cat }) {
 	const method = request.method
 	const data = await request.formData()
-
+	
 	const catData = {
 		title: data.get('title'),
 		image: data.get('image'),
 		date: data.get('date'),
 		description: data.get('description'),
+		likes: 0
 	}
+
+	console.log(catData.likes)
 
 	let url = 'http://localhost:8080/cats'
 
 	if (method === 'PATCH') {
 		const catId = params.catId
+		let res = await fetch(`http://localhost:8080/cats/${catId}`)
+		let likeData = await res.json()
+		let likes = likeData.cat.likes
+		catData.likes = likes
 		url = 'http://localhost:8080/cats/' + catId
 	}
 
