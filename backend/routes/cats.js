@@ -1,6 +1,7 @@
 const express = require('express');
 
 const { getAll, get, add, replace, remove } = require('../data/cat');
+const { checkAuth } = require('../util/auth');
 const {
   isValidText,
   isValidDate,
@@ -26,6 +27,8 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
 });
+
+router.use(checkAuth);
 
 router.post('/', async (req, res, next) => {
   const data = req.body;
@@ -57,7 +60,7 @@ router.post('/', async (req, res, next) => {
 
   try {
     await add(data);
-    res.status(201).json({ message: 'cat saved.', cat: data });
+    res.status(201).json({ message: 'Cat saved.', cat: data });
   } catch (error) {
     next(error);
   }
@@ -93,27 +96,16 @@ router.patch('/:id', async (req, res, next) => {
 
   try {
     await replace(req.params.id, data);
-    res.json({ message: 'cat updated.', cat: data });
+    res.json({ message: 'Cat updated.', cat: data });
   } catch (error) {
     next(error);
   }
 });
 
-router.put('/:id', async (req, res, next) => {
-	const data = req.body;
-  
-	try {
-	  await replace(req.params.id, data);
-	  res.json({ message: 'cat updated.', cat: data });
-	} catch (error) {
-	  next(error);
-	}
-  });
-
 router.delete('/:id', async (req, res, next) => {
   try {
     await remove(req.params.id);
-    res.json({ message: 'cat deleted.' });
+    res.json({ message: 'Cat deleted.' });
   } catch (error) {
     next(error);
   }

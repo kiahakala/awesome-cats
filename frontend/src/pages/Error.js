@@ -16,7 +16,7 @@ function ErrorPage() {
 
 	if (error.status === 404) {
 		title = 'Darn!'
-		message = 'No cats to be found!'
+		message = 'Page not found! Please check your URL.'
 	}
 
 	return (

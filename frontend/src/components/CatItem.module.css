@@ -33,10 +33,10 @@
 
 .icon {
 	position: absolute;
-	width: 2em;
-	height: 2em;
 	color: var(--color-primary-800);
 	z-index: 0;	
+	height: 2.6em !important;
+	width: 2.6em !important;
 }
 
 .iconButton:active {
@@ -46,14 +46,7 @@
 .likes {
 	color: var(--color-gray-800);
 	align-items: center;
-	font-size: 16px;
+	font-size: 0.8em;
 	z-index: 1;
-	transform: translate(0px, 10px);
-}
-
-.MuiSvgIcon-root {
-	height: 2em !important;
-	width: 2em !important;
-	color: #ababab;
-	z-index: 0;
+	transform: translate(0px, 14px);
 }

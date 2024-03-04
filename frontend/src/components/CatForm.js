@@ -7,6 +7,7 @@ import {
 	useNavigation 
 } from 'react-router-dom'
 import classes from './CatForm.module.css'
+import { getAuthToken } from '../util/auth'
 
 function CatForm({ method, cat }) {
 	const data = useActionData()
@@ -18,8 +19,6 @@ function CatForm({ method, cat }) {
 	function cancelHandler() {
 		navigate('..')
 	}
-
-	//console.log(cat.likes)
 
 	// To display backend errors: 
 	// 1. check if data is sent
@@ -88,7 +87,7 @@ function CatForm({ method, cat }) {
 
 export default CatForm
 
-export async function action({ request, params, cat }) {
+export async function action({ request, params }) {
 	const method = request.method
 	const data = await request.formData()
 	
@@ -97,26 +96,23 @@ export async function action({ request, params, cat }) {
 		image: data.get('image'),
 		date: data.get('date'),
 		description: data.get('description'),
-		likes: 0
 	}
-
-	console.log(catData.likes)
 
 	let url = 'http://localhost:8080/cats'
 
 	if (method === 'PATCH') {
 		const catId = params.catId
-		let res = await fetch(`http://localhost:8080/cats/${catId}`)
-		let likeData = await res.json()
-		let likes = likeData.cat.likes
-		catData.likes = likes
 		url = 'http://localhost:8080/cats/' + catId
 	}
+
+	// Get token to authenticate user
+	const token = getAuthToken()
 
 	const response = await fetch(url, {
 		method: method,
 		headers: {
 			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + token
 		},
 		body: JSON.stringify(catData),
 	})
