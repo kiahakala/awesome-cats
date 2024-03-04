@@ -13,12 +13,16 @@ import NewCatPage from "./pages/NewCat";
 import RootLayout from "./pages/Root";
 import { action as manipulateCatAction } from "./components/CatForm";
 import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
+import { action as logoutAction } from "./pages/Logout";
+import { tokenLoader, checkAuthLoader } from "./util/auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+		id: 'root',
+		loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -44,6 +48,7 @@ const router = createBrowserRouter([
                 path: "edit",
                 element: <EditCatPage />,
                 action: manipulateCatAction,
+								loader: checkAuthLoader,
               },
             ],
           },
@@ -51,6 +56,7 @@ const router = createBrowserRouter([
             path: "new",
             element: <NewCatPage />,
             action: manipulateCatAction,
+						loader: checkAuthLoader,
           },
         ],
       },
@@ -60,6 +66,7 @@ const router = createBrowserRouter([
         element: <NewsletterPage />,
         action: newsletterAction,
       },
+			{ path: 'logout', action: logoutAction }
     ],
   },
 ]);

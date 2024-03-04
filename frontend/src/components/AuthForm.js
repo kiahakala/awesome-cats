@@ -19,7 +19,7 @@ function AuthForm() {
 
   const isSubmitting = navigation.state === "submitting";
 
-	// Input names must be set to use Router Form!
+  // Input names must be set to use Router Form!
   return (
     <>
       <Form method="post" className={classes.form}>
@@ -45,7 +45,7 @@ function AuthForm() {
             {isLogin ? "Create new account" : "Login"}
           </Link>
           <button disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Save"}
+            {isSubmitting ? "Submitting..." : isLogin ? "Login" : "Save"}
           </button>
         </div>
       </Form>

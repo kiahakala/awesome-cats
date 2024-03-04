@@ -33,17 +33,17 @@
 - return resData.cats
 - return response
 
-### From Cat Detail Page
-
-<>
-
-<h1>CatDetailPage</h1>
-<p>Cat ID: {params.catId} </p>
-</>
-
 ### Deferring Data Fetching
 
 - Defer function enables rendering component before loading data
 - Defer function executes the component's async fetch function
 - Async function's response must be manually parsed (Cats.js line 34)
 - Suspense component acts as a fallback
+
+### Logout functionality
+
+Implemented with a logout route => an action function removes the token from the local storage and redirects to the home page.
+
+### Route protection
+
+Implemented with a loader function that checks if the user is authenticated. If not, the user is redirected.

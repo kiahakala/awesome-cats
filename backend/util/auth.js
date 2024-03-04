@@ -3,9 +3,7 @@ const { compare } = require('bcryptjs');
 const { NotAuthError } = require('./errors');
 require('dotenv').config();
 
-const KEY = 'test'
-
-console.log(KEY)
+const KEY = process.env.SECRET_KEY
 
 function createJSONToken(email) {
 	return sign({ email }, KEY, { expiresIn: '1h' });
