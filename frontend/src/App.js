@@ -1,10 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AuthPage, { action as authAction } from "./pages/Authentication";
-import CatDetailPage, {
-  loader as catDetailLoader,
-  action as deleteCatAction,
-} from "./pages/CatDetail";
-import CatsPage, { loader as catsLoader } from "./pages/Cats";
+// import CatDetailPage, {
+//   loader as catDetailLoader,
+//   action as deleteCatAction,
+// } from "./pages/CatDetail";
+// import CatsPage, { loader as catsLoader } from "./pages/Cats";
 import CatsRootLayout from "./pages/CatsRoot";
 import EditCatPage from "./pages/EditCat";
 import ErrorPage from "./pages/Error";
@@ -15,14 +15,19 @@ import { action as manipulateCatAction } from "./components/CatForm";
 import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 import { action as logoutAction } from "./pages/Logout";
 import { tokenLoader, checkAuthLoader } from "./util/auth";
+import { lazy, Suspense } from "react";
+
+// Lazy loading
+const CatsPage = lazy(() => import("./pages/Cats"));
+const CatDetailPage = lazy(() => import("./pages/CatDetail"));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-		id: 'root',
-		loader: tokenLoader,
+    id: "root",
+    loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -31,24 +36,40 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <CatsPage />,
-            loader: catsLoader,
+            element: (
+              <Suspense
+                fallback={<p style={{ textAlign: "center" }}>Loading...</p>}
+              >
+                <CatsPage />
+              </Suspense>
+            ),
+            // Lazy loading
+            loader: () =>
+              import("./pages/Cats").then((module) => module.loader()),
           },
           {
             path: ":catId",
             id: "cat-detail",
-            loader: catDetailLoader,
+            loader: (meta) =>
+              import("./pages/CatDetail").then((module) => module.loader(meta)),
             children: [
               {
                 index: true,
-                element: <CatDetailPage />,
-                action: deleteCatAction,
+                element: (
+                  <Suspense
+                    fallback={<p style={{ textAlign: "center" }}>Loading...</p>}
+                  >
+                    <CatDetailPage />
+                  </Suspense>
+                ),
+                action: (meta) =>
+                  import("./pages/CatDetail").then((module) => module.action(meta)),
               },
               {
                 path: "edit",
                 element: <EditCatPage />,
                 action: manipulateCatAction,
-								loader: checkAuthLoader,
+                loader: checkAuthLoader,
               },
             ],
           },
@@ -56,7 +77,7 @@ const router = createBrowserRouter([
             path: "new",
             element: <NewCatPage />,
             action: manipulateCatAction,
-						loader: checkAuthLoader,
+            loader: checkAuthLoader,
           },
         ],
       },
@@ -66,7 +87,7 @@ const router = createBrowserRouter([
         element: <NewsletterPage />,
         action: newsletterAction,
       },
-			{ path: 'logout', action: logoutAction }
+      { path: "logout", action: logoutAction },
     ],
   },
 ]);
