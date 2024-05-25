@@ -1,6 +1,7 @@
 .form {
   max-width: 40rem;
   margin: 2rem auto;
+	height: 70vh;
 }
 
 .form label,
@@ -14,6 +15,14 @@
 .form textarea {
   font: inherit;
   padding: 0.25rem;
+	border: 0.12rem solid var(--color-gray-300);
+	border-radius: 0.25rem;
+	transition: 0.5s;
+	background-color: var(--color-gray-800);
+
+	&:focus {
+		border: 0.12rem solid var(--color-primary-800);
+	}
 }
 
 .actions {
@@ -44,5 +53,6 @@
 }
 
 .actions a:hover {
-  background-color: var(--color-gray-800);
+	background-color: transparent;
+	color: var(--color-primary-700);
 }

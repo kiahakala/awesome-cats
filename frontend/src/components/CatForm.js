@@ -44,7 +44,7 @@ function CatForm({ method, cat }) {
 					/>
 			</p>
 			<p>
-				<label htmlFor='image'>Image</label>
+				<label htmlFor='image'>Image URL</label>
 				<input 
 					id='image' 
 					type='url' 
@@ -65,7 +65,7 @@ function CatForm({ method, cat }) {
 			</p>
 			<p>
 				<label htmlFor='description'>Description</label>
-				<input 
+				<textarea 
 					id='description' 
 					name='description' 
 					rows='5'

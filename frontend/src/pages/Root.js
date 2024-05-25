@@ -1,5 +1,6 @@
 import { Outlet, useLoaderData, useSubmit } from 'react-router-dom'
 import MainNavigation from '../components/MainNavigation'
+import Footer from '../components/Footer'
 import { useEffect } from 'react'
 import { getTokenDuration } from '../util/auth'
 
@@ -32,6 +33,7 @@ function RootLayout() {
 			<main>
 				<Outlet />
 			</main>
+			<Footer />
 		</>
 	)
 }

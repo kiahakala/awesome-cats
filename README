@@ -1,49 +1,42 @@
-## NOTES
+# Awesome Cats
 
-### Working with loaders:
+A cat image gallery built with React + React Router 6 and Node.js + Express.
 
-- route loader property which requires a function
-- function will be executed when the route is visited
-- remove state value settings
-- the loader function can be imported from the component
-- executed in the browser
+## Features
 
-### Working with actions:
+- View a list of cat images
+- View a single cat image with details
+- Create a user account and login to add, edit and delete cats
 
-- used to send requests to the backend
-- route action property which requires a function
-- can be imported from the component
-- executed in the browser
+The project database is currently a local JSON file. If developed further, the backend should be connected to a proper database.
 
-### Error Handling Options
+Another next step would be to add a feature to upload images to the server and store them in the database instead of using URLs.
 
-- setError('Fetching cats failed')
-- throw new Error()
-- throw new Response(
-  JSON.stringify({ message: 'Could not fetch cats :('}), {
-  status: 500
-  }
-  )
-- throw json() // React Router Dom function; creates response object
+Authentication is done with JWT tokens. The token is stored in the browser's local storage. The token is valid for 1 hour or until the user logs out.
 
-### Response Ok Options
+## Requirements
 
-- const resData = await response.json()
-- setFetchedCats(resData.cats)
-- return resData.cats
-- return response
+- Node.js
+- npm
 
-### Deferring Data Fetching
+## Installation
 
-- Defer function enables rendering component before loading data
-- Defer function executes the component's async fetch function
-- Async function's response must be manually parsed (Cats.js line 34)
-- Suspense component acts as a fallback
+Installation and launching the application is done in the terminal. The Bash shell is used in these instructions.
 
-### Logout functionality
+To run this application, you need to install the required dependencies for backend and frontend. To do so, navigate to the project folder _awesome-cats_ and run the following command in both _awesome-cats/backend_ and _awesome-cats/frontend_ directories:
 
-Implemented with a logout route => an action function removes the token from the local storage and redirects to the home page.
+```bash
+npm install
+```
 
-### Route protection
+To start the development servers, run the folloing command in both _awesome-cats/backend_ and _awesome-cats/frontend_ directories:
 
-Implemented with a loader function that checks if the user is authenticated. If not, the user is redirected.
+```bash
+npm run dev
+```
+
+The application frontend starts running on http://localhost:3000. If the port is already in use, close the session running on it or choose another port.
+
+The application backend starts running on http://localhost:8080. If the port is already in use, close the session running on it and retry.
+
+NOTE! Authentication requires a secret key that is not included in the repository. To run the application with all features, you need to create a _.env_ file in the _awesome-cats/backend_ directory and request the secret key from the project owner.
